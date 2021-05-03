@@ -1,0 +1,60 @@
+
+
+{% include "navbar.html" %}
+
+ <body style="background-color:#669999;"  >
+  <div class="w3-container">
+
+  <h2 class="font-weight-bold indigo-text">Personal Book Store  ---> {{user}}</h2>
+  <p>Below are the Books added by you</p>
+  <table class="table">
+    <thead>
+    <tr class="">
+      <th scope="col">Title</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Author</th>
+      <th scope="col">Rating </th>
+        <th></th>
+          <th></th>
+          <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for o in obj %}
+
+    <tr class="rowgroup">
+      <th scope="row">{{o.Title}}</th>
+      <th scope="row">{{o.Genre}}</th>
+      <th scope="row">{{o.Author}}</th>
+      <th scope="row">{{o.Rating}}</th>
+      <th scope="row">
+        <form method="post" >
+            {% csrf_token %}
+        <input type="hidden" name="read" value="{{o.Title}}">
+        <button type="submit">Read</button>
+        </form>
+      </th>
+      <th scope="row">
+        <form method="post" >
+            {% csrf_token %}
+        <input type="hidden" name="update" value="{{o.Title}}">
+        <button type="submit">Update</button>
+        </form>
+      </th>
+       <th scope="row">
+        <form method="post" >
+            {% csrf_token %}
+        <input type="hidden" name="delete" value="{{o.Title}}">
+        <button type="submit">Delete</button>
+        </form>
+      </th>
+    </tr>
+
+    {% endfor %}
+
+</tbody>
+  </table>
+  </div>
+
+</body>
+
